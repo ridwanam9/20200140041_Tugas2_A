@@ -29,8 +29,16 @@ namespace _20200140041_Tugas2_A
                 con = new SqlConnection("data source=DESKTOP-KVHUS77\\RIDWANAM;database=Ridwan;Integrated Security = True");
                 con.Open();
 
-                SqlCommand cm = new SqlCommand("create table Mahasiswa_Coba (NIM char(12) not null primary key, " +
-                    "Nama varchar(50), Alamat varchar(255), Jenis_kelamin char(1))", con);
+                SqlCommand cm = new SqlCommand("create table Penyewa (id_penyewa int not null primary key, " +
+                    "nama_penyewa varchar(30) not null, alamat varchar(100), notelp_penyewa char(12)) " +
+                    "" +
+                    "create table Pemilik (id_pemilik int not null primary key, nama_pemilik varchar(30), notelp_pemilik char(12)) " +
+                    "" +
+                    "create table Kios_mall (id_kios int primary key, id_pemilik int foreign key references Pemilik(id_pemilik), " +
+                    "nama_kios varchar(30), ukuran varchar(6), harga_perbulan money)" +
+                    "" +
+                    "create table Transaksi (id_transaksi int primary key, id_penyewa int foreign key references Penyewa(id_penyewa), " +
+                    "id_kios int foreign key references Kios_mall (id_kios), tanggal datetime, jenis_pembayaran varchar(6), bayar money, kembalian money) ", con);
                 cm.ExecuteNonQuery();
 
                 Console.WriteLine("Tabel suskes dibuat");
@@ -50,6 +58,7 @@ namespace _20200140041_Tugas2_A
         static void Main(string[] args)
         {
             new Program().Connecting();
+            new Program().CreateTable();
         }
     }
 }
