@@ -55,10 +55,60 @@ namespace _20200140041_Tugas2_A
             }
         }
 
+        public void InsertData()
+        {
+            SqlConnection con = null;
+            try
+            {
+                con = new SqlConnection("data source=DESKTOP-KVHUS77\\RIDWANAM;database=Ridwan;Integrated Security = True");
+                con.Open();
+
+                SqlCommand cm = new SqlCommand("" +
+                    "insert into Penyewa(id_penyewa, nama_penyewa, alamat, notelp_penyewa) values (1, 'Ira', 'Jl. Gatot Subroto', '089758631945')"
+                    + "insert into Penyewa(id_penyewa, nama_penyewa, alamat, notelp_penyewa) values (2, 'Ishaq', 'Jl. Ahmad Yani', '089853638976')"
+                    + "insert into Penyewa(id_penyewa, nama_penyewa, alamat, notelp_penyewa) values (3, 'Ami', 'Jl. Rahadi Oesman', '088758838945')"
+                    + "insert into Penyewa(id_penyewa, nama_penyewa, alamat, notelp_penyewa) values (4, 'Yudha', 'Jl. Toronto', '089808901978')"
+                    + "insert into Penyewa(id_penyewa, nama_penyewa, alamat, notelp_penyewa) values (5, 'Zymeth', 'Jl. Ottawa', '089201912973')" +
+                    ""
+                    + "insert into Pemilik(id_pemilik, nama_pemilik, notelp_pemilik) values (1, 'Seyas', '089878631945')"
+                    + "insert into Pemilik(id_pemilik, nama_pemilik, notelp_pemilik) values (2, 'Ilma', '089853100076')"
+                    + "insert into Pemilik(id_pemilik, nama_pemilik, notelp_pemilik) values (3, 'Ulquiorra', '088740820045')"
+                    + "insert into Pemilik(id_pemilik, nama_pemilik, notelp_pemilik) values (4, 'Grimmjow',  '089808501077')"
+                    + "insert into Pemilik(id_pemilik, nama_pemilik, notelp_pemilik) values (5, 'Anglin',  '089881992453')" +
+                    ""
+                    + "insert into Kios_mall(id_kios, id_pemilik, nama_kios, ukuran, harga_perbulan) values (1, 1,'Gramedia', '7 x 12', 7000000)"
+                    + "insert into Kios_mall(id_kios, id_pemilik, nama_kios, ukuran, harga_perbulan) values (2, 2,'Sushienak', '6 x 5', 4000000)"
+                    + "insert into Kios_mall(id_kios, id_pemilik, nama_kios, ukuran, harga_perbulan) values (3, 3,'Ramen', '8 x 4', 6000000)"
+                    + "insert into Kios_mall(id_kios, id_pemilik, nama_kios, ukuran, harga_perbulan) values (4, 4,'Fashionstar', '6 x 9', 5000000)"
+                    + "insert into Kios_mall(id_kios, id_pemilik, nama_kios, ukuran, harga_perbulan) values (5, 5,'Indhira', '6 x 10', 6000000)" +
+                    ""
+                    + "insert into Transaksi(id_transaksi, id_penyewa, id_kios, tanggal, jenis_pembayaran, bayar, kembalian) values (1, 1, 1, '2022-01-18 18:54:00.000', 'online', 7000000, 0)"
+                    + "insert into Transaksi(id_transaksi, id_penyewa, id_kios, tanggal, jenis_pembayaran, bayar, kembalian) values (2, 1, 1, '2022-02-18 17:20:00.000', 'online', 7000000, 0)"
+                    + "insert into Transaksi(id_transaksi, id_penyewa, id_kios, tanggal, jenis_pembayaran, bayar, kembalian) values (3, 2, 2, '2022-03-05 05:55:00.000', 'online', 4000000, 0)"
+                    + "insert into Transaksi(id_transaksi, id_penyewa, id_kios, tanggal, jenis_pembayaran, bayar, kembalian) values (4, 2, 2, '2022-04-05 10:06:00.000', 'online', 4000000, 0)"
+                    + "insert into Transaksi(id_transaksi, id_penyewa, id_kios, tanggal, jenis_pembayaran, bayar, kembalian) values (5, 3, 3, '2022-06-18 11:04:00.000', 'online', 6000000, 0)"
+                    + "insert into Transaksi(id_transaksi, id_penyewa, id_kios, tanggal, jenis_pembayaran, bayar, kembalian) values (6, 3, 3, '2022-07-18 12:30:00.000', 'online', 6000000, 0)", con);
+                cm.ExecuteNonQuery();
+
+                Console.WriteLine("Berhasil Menambahkan Data");
+                Console.ReadKey();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Gagal menambahkan data" + e);
+                Console.ReadKey();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         static void Main(string[] args)
         {
-            new Program().Connecting();
-            new Program().CreateTable();
+            //new Program().Connecting();
+            //new Program().CreateTable();
+            new Program().InsertData();
         }
     }
 }
